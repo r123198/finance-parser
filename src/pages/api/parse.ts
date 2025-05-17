@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import formidable, { File, Fields, Files } from 'formidable';
-import type { FileUploadResponse, Transaction, StatementAnalysis } from '@/types';
+import type { FileUploadResponse, StatementAnalysis } from '@/types';
 import pdfParse from 'pdf-parse';
+import fs from 'fs';
 
 // Use a string property on globalThis for transaction storage
 const TRANSACTION_STORE = '__parsedTransactions';
@@ -15,10 +16,20 @@ async function extractTextFromPDF(file: File): Promise<string> {
   try {
     const fileBuffer = await new Promise<Buffer>((resolve, reject) => {
       const chunks: Buffer[] = [];
-      file.filepath && require('fs').createReadStream(file.filepath)
-        .on('data', (chunk: Buffer) => chunks.push(chunk))
-        .on('end', () => resolve(Buffer.concat(chunks)))
-        .on('error', reject);
+      if (file.filepath) {
+        const stream = fs.createReadStream(file.filepath);
+        stream.on('data', (chunk: string | Buffer) => {
+          if (Buffer.isBuffer(chunk)) {
+            chunks.push(chunk);
+          } else {
+            chunks.push(Buffer.from(chunk));
+          }
+        });
+        stream.on('end', () => resolve(Buffer.concat(chunks)));
+        stream.on('error', reject);
+      } else {
+        reject(new Error('No filepath for file'));
+      }
     });
 
     const data = await pdfParse(fileBuffer);
@@ -207,7 +218,7 @@ export default async function handler(
       keepExtensions: true,
     });
 
-    const [fields, files] = await new Promise<[Fields, Files]>((resolve, reject) => {
+    const [, files] = await new Promise<[Fields, Files]>((resolve, reject) => {
       form.parse(req, (err: Error | null, fields: Fields, files: Files) => {
         if (err) reject(err);
         resolve([fields, files]);

@@ -7,7 +7,7 @@ export interface Transaction {
   category: string;
   merchant: string;
   remark?: string;
-  rawData?: Record<string, any>;
+  rawData?: Record<string, unknown>;
 }
 
 export interface StatementFile {

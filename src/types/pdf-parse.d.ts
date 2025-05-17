@@ -3,11 +3,11 @@ declare module 'pdf-parse' {
     text: string;
     numpages: number;
     numrender: number;
-    info: any;
-    metadata: any;
+    info: unknown;
+    metadata: unknown;
     version: string;
   }
 
-  function PDFParse(dataBuffer: Buffer, options?: any): Promise<PDFData>;
+  function PDFParse(dataBuffer: Buffer, options?: unknown): Promise<PDFData>;
   export = PDFParse;
 } 
