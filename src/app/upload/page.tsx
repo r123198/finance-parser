@@ -23,11 +23,6 @@ export default function UploadPage() {
             uploadStatus.success ? 'bg-emerald-50 text-emerald-800' : 'bg-rose-50 text-rose-800'
           }`}>
             <p className="font-medium">{uploadStatus.message}</p>
-            {uploadStatus.transactionCount && (
-              <p className="mt-2 text-sm">
-                Successfully parsed {uploadStatus.transactionCount} transactions
-              </p>
-            )}
             {uploadStatus.error && (
               <p className="mt-2 text-sm">{uploadStatus.error}</p>
             )}

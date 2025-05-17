@@ -33,8 +33,8 @@ export default function DashboardPage() {
         if (!res.ok) throw new Error('No analysis data found. Please upload a statement.');
         const data = await res.json();
         setAnalysis(data);
-      } catch (e: any) {
-        setError(e.message || 'Failed to load analysis.');
+      } catch (e: unknown) {
+        setError(e instanceof Error ? e.message : 'Failed to load analysis.');
       } finally {
         setLoading(false);
       }
