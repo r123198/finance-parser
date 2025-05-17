@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Statement Analyzer
+
+A modern, open-source web application that helps users analyze their financial statements by automatically parsing PDF and Excel files, providing clear insights into their spending patterns and financial health.
+
+## Features
+
+- 📤 Easy file upload for PDF and Excel statements
+- 🔍 Automatic transaction parsing and categorization using LLM (DeepSeek)
+- 📊 Interactive dashboard with spending insights and charts
+- 📈 Category breakdown, top merchants, and monthly trends
+- 💡 AI-powered observations and suggestions
+- 🔒 Privacy-first: No data is stored on a server (demo uses in-memory storage)
+- 🌈 Beautiful, retro-inspired UI
+- 🆓 100% open source
+
+## Tech Stack
+
+- [Next.js 14](https://nextjs.org/) (App Router)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Chart.js](https://www.chartjs.org/) & [react-chartjs-2](https://react-chartjs-2.js.org/)
+- [formidable](https://www.npmjs.com/package/formidable) (file uploads)
+- [pdf-parse](https://www.npmjs.com/package/pdf-parse) (PDF text extraction)
+- [DeepSeek](https://deepseek.com/) (LLM for financial analysis)
 
 ## Getting Started
 
-First, run the development server:
-
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/statement-analyzer.git
+cd statement-analyzer
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Set up environment variables
+Create a `.env.local` file in the root:
+```
+DEEPSEEK_API_KEY=your-deepseek-api-key-here
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Run the development server
+```bash
+npm run dev
+```
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+### Deploying to Vercel (Recommended)
+1. Push your code to GitHub, GitLab, or Bitbucket.
+2. Go to [vercel.com](https://vercel.com/), sign up, and import your repository.
+3. Set the `DEEPSEEK_API_KEY` environment variable in the Vercel dashboard.
+4. Click **Deploy**. Your app will be live!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
+- Upload your bank statement (PDF, XLS, XLSX, or CSV).
+- The app will parse, analyze, and visualize your transactions.
+- View insights, category breakdowns, and AI-powered suggestions on the dashboard.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
+```
+src/
+├── app/                 # Next.js app router pages
+│   ├── api/            # API routes
+│   ├── dashboard/      # Dashboard page
+│   └── upload/         # File upload page
+├── components/         # Reusable UI components
+├── types/              # TypeScript type definitions
+└── utils/              # Utility functions
+```
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Contributions are welcome! To contribute:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+This project is open source under the [MIT License](LICENSE).
+
+---
+
+**Made with ❤️ for the open-source community.**

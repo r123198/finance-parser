@@ -24,3 +24,40 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* 90s Retro Background */
+.retro-bg {
+  background: repeating-linear-gradient(135deg, #181818 0 20px, #222 20px 40px),
+    repeating-linear-gradient(45deg, #181818 0 20px, #222 20px 40px);
+  background-blend-mode: lighten;
+}
+
+.font-vt323 {
+  font-family: 'VT323', monospace, 'Courier New', Courier;
+}
+
+.retro-title {
+  letter-spacing: 0.15em;
+  text-shadow: 2px 2px 0 #00fff7, 4px 4px 0 #ff00c8;
+}
+
+.retro-btn {
+  box-shadow: 4px 4px 0 #00fff7, 8px 8px 0 #ff00c8;
+  border-radius: 0.5rem;
+  border-width: 4px;
+  font-family: 'VT323', monospace, 'Courier New', Courier;
+  letter-spacing: 0.1em;
+  transition: all 0.15s;
+}
+
+.retro-btn:hover {
+  filter: brightness(1.1) contrast(1.2);
+  box-shadow: 2px 2px 0 #ff00c8, 4px 4px 0 #00fff7;
+}
+
+.retro-nav {
+  font-family: 'VT323', monospace, 'Courier New', Courier;
+  border-radius: 0 0 1rem 1rem;
+  border-bottom-width: 6px;
+  box-shadow: 0 6px 0 #ff00c8;
+}
